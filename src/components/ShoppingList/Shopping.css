@@ -1,0 +1,16 @@
+.shop__container {
+  background-color: green;
+  display: flex;
+  align-items: center;
+  margin: 50px;
+  border: 2px solid red;
+}
+
+.title {
+  padding-top: 15em;
+}
+
+.shopping_list-item {
+  display: flex;
+  flex-direction: column;
+}/*# sourceMappingURL=Shopping.css.map */
