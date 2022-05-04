@@ -38,7 +38,7 @@ $max-width: 1800px;
   }
 
   &__title {
-    font-size: font-size(3);
+    font-size: 12px;
     margin-bottom: 1em;
     line-height: 2;
     color: var(--color-accent);
@@ -67,7 +67,7 @@ body {
   --color-basic-bg: white;
   --color-grey: #777777;
   --color-light-green: #1bcc5c;
-  font-family: "Dosis" sans-serif;
+  font-family: "Dosis", "Poppins", sans-serif;
 }
 
 .sr-only {
@@ -83,7 +83,7 @@ body {
 
 // Hero
 .hero {
-  background-image: url("../images/hero.jpg");
+  background-image: url("../Assets/hero.jpg");
   opacity: 40%;
   z-index: -5;
   background-size: cover;
@@ -97,9 +97,10 @@ body {
   margin-bottom: 2em;
 
   &__title {
-    color: var(--color-accent);
+    color: white;
+    text-shadow: 1px 1px var(--color-accent);
     padding: 0.25em;
-    font-size: font-size(5);
+    font-size: 14px;
     font-weight: bold;
     border-radius: 0.25em;
     text-align: center;
@@ -170,7 +171,7 @@ body {
 
 .contact-links {
   color: white;
-  background-image: url("../images/hero.jpg");
+  background-image: url("../Assets/hero.jpg");
   opacity: 40%;
   border-radius: 10px 0 0 10px;
 }
@@ -286,7 +287,7 @@ button:hover {
       hsla(31, 50%, 42.8%, 0.8),
       hsla(348, 50%, 47.1%, 0.8)
     ),
-    (url("../images/hero.jpg"));
+    (url("../Assets/hero.jpg"));
   background-size: cover;
   background-repeat: no-repeat;
   color: var(--color-text);

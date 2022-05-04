@@ -1,73 +1,30 @@
 import React, { useState } from "react";
-import img_wit from "../../Assets/wit.png";
-import img_zwart from "../../Assets/black.png";
-import { FaBeer } from "react-icons/fa";
+import img_white from "../../Assets/wit.png";
+import img_black from "../../Assets/black.png";
 
 // whith chefshad
-// const RecipeRating = () => {
-//   const [rating, setRating] = useState(null);
-
-//   return (
-//
-//     <div>
-//       {[...Array(5)].map((chefshad, i) => {
-//         const ratingValue = i + 1;
-
-//         console.log(ratingValue);
-//         return (
-//           <label>
-//             <input
-//               type="radio"
-//               name="rating"
-//               className="btn__radio"
-//               value={ratingValue}
-//             />
-//             <img
-//               alt="koksmutsje wit of zwart"
-//               className="btn__icon"
-//               onClick={() => setRating(ratingValue)}
-//               src={img_wit}
-//               //   src={
-//               //     {(ratingValue) <= (hover || rating) ? { img_zwart } : { img_wit }
-//               //   }}
-//             />
-//             {/* <img
-//               alt="koksmutsje wit of zwart"
-//               className="btn__icon2"
-//               onClick={() => setRating(ratingValue)}
-//               src={img_zwart}
-//             /> */}
-//           </label>
-//         );
-//       })}
-//     </div>
-//   );
-// };
-
 const RecipeRating = () => {
-  const [rating, setRating] = useState(null);
-
+  const [rating, setRating] = useState(0);
+  console.log(rating);
+  
   return (
-    <div>
-      {[...Array(5)].map((beer, i) => {
-        const ratingValueBeer = i + 1;
+    <div className="chefshad-rating">
+      {[...Array(5)].map((chefshad, i) => {
+        i += 1;
 
-        console.log(ratingValueBeer);
         return (
-          <label>
-            <input
-              type="radio"
-              name="rating"
-              className="btn__radio"
-              value={ratingValueBeer}
-            />
-
-            <FaBeer
+          <button
+            type="button"
+            key={i}
+            className="btn__rating"
+            onClick={() => setRating(i)}>
+            <img
+              alt="koksmutsje wit of zwart"
               className="btn__icon"
-              onClick={() => setRating(ratingValueBeer)}
-              color={ratingValueBeer < rating ? "#e4e5e9" : "#ffc107"}
+              onClick={() => setRating(i)}
+              src={i <= rating ? `${img_black}` : `${img_white}`}
             />
-          </label>
+          </button>
         );
       })}
     </div>

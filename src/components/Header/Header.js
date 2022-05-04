@@ -1,9 +1,8 @@
 import React from "react";
 import img_icon from "../../Assets/logo.jpg";
-import { db } from "../../utils/firebase";
 import img_avatar from "../../Assets/chef-kok.webp";
+import img_head from "../../Assets/head_icon.jpg";
 import CreateUser from "../User/CreateUser";
-import { signOut } from "firebase/auth";
 import { useAuth } from "../../utils/useAuth";
 import { getFirestore } from "firebase/firestore";
 import ThemeSelector from "./ThemeSelector";
@@ -33,7 +32,7 @@ const Header = () => {
               <ul className="dropdown-menu">
                 <li className="dropdown-item">
                   <a href="/RecipeList" className="main-nav__sub-item">
-                  Recipe detail
+                    Recipe detail
                   </a>
                 </li>
                 <li className="dropdown-item">
@@ -60,7 +59,7 @@ const Header = () => {
           <li className="nav-item dropdown">
             <a href="/" className="main-nav__item" component={CreateUser}>
               <img
-                src={img_avatar}
+                src={currentUser ? `${img_avatar}` : `${img_head}`}
                 alt="avatar to userprofile"
                 className="avatar"
                 height="40px"
@@ -72,7 +71,7 @@ const Header = () => {
             <ul className="dropdown-menu">
               <li className="dropdown-item">
                 <a href="/Login" className="main-nav__sub-item">
-                  log in
+                  {currentUser ? "log out" : "log in"}
                 </a>
               </li>
               <li className="dropdown-item">

@@ -1,23 +1,19 @@
 import React from "react";
-import { db, storage } from "../../utils/firebase";
+import { db } from "../../utils/firebase";
 import { useState, useEffect } from "react";
-import { updateItem, deleteItem } from "../../utils/crud";
-import { updateIngredientsByPersons } from "./VariablesRecipe";
-import img_wit from "../../Assets/wit.png";
+import { updateItem, deleteItem, recipeCollectionRef } from "../../utils/crud";
 import {
-  collection,
-  onSnapshot,
-  addDoc,
-  query,
-  orderBy,
-  endAt,
-} from "firebase/firestore";
+  updateIngredientsByPersons
+} from "./VariablesRecipe";
+import img_white from "../../Assets/wit.png";
+import { collection, onSnapshot, addDoc } from "firebase/firestore";
 import ImagesUpload from "../ImagesUpload";
-// import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import RecipeSelection from "./RecipeSelection";
 
 // this is the CRUD for recipe
 
 function Recipe() {
+  const [imageUrl, setImageUrl] = useState(null);
   const [recipes, setRecipes] = useState([]);
   const [form, setForm] = useState({
     title: "",
@@ -34,9 +30,10 @@ function Recipe() {
   // to query on the data , get the pagination: https://firebase.google.com/docs/firestore/query-data/query-cursors
 
   // to get all the data from firestore
-  const recipesCollectionRef = collection(db, "recept");
+  // const recipesCollectionRef = collection(db, "recept");
+
   useEffect(() => {
-    onSnapshot(recipesCollectionRef, (snapshot) => {
+    onSnapshot(recipeCollectionRef, (snapshot) => {
       setRecipes(
         snapshot.docs.map((doc) => {
           return {
@@ -64,7 +61,7 @@ function Recipe() {
     setRecipes(recipesClone);
   };
 
-  // if we submit the form all the fields exept imageUrl are completed
+  // // if we submit the form all the fields exept imageUrl are completed
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -81,7 +78,7 @@ function Recipe() {
       return;
     }
 
-    addDoc(recipesCollectionRef, form);
+    addDoc(recipeCollectionRef, { ...form, imageUrl });
 
     setForm({
       title: "",
@@ -135,22 +132,13 @@ function Recipe() {
     });
   };
 
-  // const uploadFile = () => {
-  //   if (imageUpload == null) return;
-  //   const imageRef = ref(storage, `Images/${imageUpload.imageUrl}`);
-  //   uploadBytes(imageRef, imageUpload).then((snapshot) => {
-  //     getDownloadURL(snapshot.ref).then((url) => {
-  //       setImageUrls((prev) => [...prev, url]);
-  //     });
-  //   });
-  // };
-
   return (
     <>
       <div className="recipe">
         <h1 className="recipe__title">My recipes</h1>
         <button onClick={() => setPopupActive(!popupActive)}>Add recipe</button>
-
+        <div className="recipe-collection">
+        <RecipeSelection />
         <ul className="recipe__list">
           {recipes.map((recipe, i) => (
             <div className="recipe-item" key={recipe.id}>
@@ -187,7 +175,7 @@ function Recipe() {
                 </button>
                 <button className="recipe-item__btn">
                   <img
-                    src={img_wit}
+                    src={img_white}
                     alt="koksmutsje wit of zwart"
                     className="recipe-item__btn-icon"
                   />
@@ -203,7 +191,6 @@ function Recipe() {
                   informatie over ingrediënten en allergenen.
                 </span>
               </div>
-
               {recipe.viewing && (
                 <div>
                   <aside className="aside">
@@ -211,9 +198,7 @@ function Recipe() {
                       Bereidingstijd: {recipe.time}
                       <i>⏱️</i>
                     </span>
-
                     <span className="aside__persons">Persons: 2 🍴</span>
-
                     <span className="aside__price">
                       Price: {recipe.price} €
                     </span>
@@ -324,7 +309,7 @@ function Recipe() {
           ))}
         </ul>
       </div>
-
+</div>
       {popupActive && (
         <div className="popup">
           <div className="popup-inner">
@@ -351,14 +336,7 @@ function Recipe() {
               </div>
               <div className="form-group">
                 <label>add image:</label>
-                <ImagesUpload />
-                {/* <input
-        type="file"
-        // value={url}
-        onChange={(e) =>
-          setForm({...form, imageUrl: e.target.files[0] })
-        }
-      ></input> */}
+                <ImagesUpload setImageUrl={setImageUrl} />
               </div>
               <div className="form-group">
                 <label>Time:</label>

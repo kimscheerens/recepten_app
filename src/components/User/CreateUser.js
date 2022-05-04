@@ -34,11 +34,8 @@ export default function CreateUser() {
         <div class="login-page">
           <div className="form">
             <div className="register-form">
-              <div>
-                Currently logged in as: {currentUser && currentUser.email}
-              </div>
               {error && <span className="error">{error}</span>}
-              <input ref={emailRef} placeholder="Email" />
+              <input ref={emailRef} placeholder="Email"/>
               <input ref={passwordRef} type="password" placeholder="Password" />
               <input
                 ref={passwordconfirmRef}

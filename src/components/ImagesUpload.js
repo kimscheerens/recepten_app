@@ -1,49 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { storage } from "../utils/firebase";
-import { getDownloadURL, list, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
 
 const imageListRef = ref(storage, "Images/");
 
-const ImagesUpload = () => {
-  const [imageUpload, setImageUpload] = useState(null);
-  const [imageList, setImageList] = useState([]);
+const ImagesUpload = ({ setImageUrl }) => {
+  const [imageUpload, setImageUpload] = useState([]);
 
- const uploadImage = () => {
+  const uploadImage = () => {
     if (imageUpload == null) return;
+    console.log(imageUpload);
 
-    const imageRef = ref(storage, `Images/${imageUpload.name + v4()}`);
-    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+    const imageRef = ref(
+      storage,
+      `Images/${v4()}_${imageUpload.imageUrl.name}`
+    );
+    uploadBytes(imageRef, imageUpload.imageUrl).then((snapshot) => {
       // alert("image uploaded");
       getDownloadURL(snapshot.ref).then((url) => {
-        setImageList((prev) => [...prev, url]);
+        setImageUrl(url);
+        console.log(url);
       });
     });
   };
-
-  useEffect(() => {
-    list(imageListRef).then((response) => {
-      console.log(response);
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImageList((prev) => [...prev, url]);
-        });
-      });
-    });
-  }, []);
 
   return (
     /**[0] is because we only will upload 1 picture */
     <div>
       <input
         type="file"
-        // value={url}
-        onChange={(e) =>
-          setImageUpload({imageUrl: e.target.files[0] })
-        }
+        onChange={(e) => setImageUpload({ imageUrl: e.target.files[0] })}
       ></input>
       <button onClick={uploadImage}>upload image</button>
-     </div>
+    </div>
   );
 };
 

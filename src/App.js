@@ -3,6 +3,7 @@ import "./App.css";
 import "../src/styling/main.css";
 import "../src/components/Header/header.css";
 import "../src/components/Recipe/recipe.css";
+import "../src/components/Recipe/RecipeAside.css";
 import "../src/components/ShoppingList/Shopping.css";
 import "../src/components/User/user.css";
 
@@ -37,8 +38,8 @@ function App() {
           <Favorites path="/favorites" />
           <WeekMenu path="/RecipeList/WeekMenu" />
           <Shop path="/shop" />
-          <CreateUser path="/CreateUser" component={CreateUser} />
-          <Login path="/Login" component={Login} />
+          <CreateUser path="/CreateUser" />
+          <Login path="/Login" />
           <Contact path="/contact" />
         </Router>
       </RecipeProvider>

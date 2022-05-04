@@ -2,31 +2,6 @@ $max-width: 1800px;
 
 // recept gedeelte
 
-// .banner {
-//   background: var(--color-bg-tint) url("../../Assets/hero.jpg") no-repeat 100%
-//     50%;
-//   opacity: 40%;
-//   z-index: -5;
-//   background-size: auto;
-//   background-position: right 30%;
-//   height: 60vh;
-//   display: flex;
-//   justify-content: center;
-//   flex-direction: column;
-//   align-items: center;
-//   margin-bottom: 2em;
-
-//   &__title {
-//     color: var(--color-accent);
-//     padding: 0.25em;
-//     font-size: 28px;
-//     font-weight: 700;
-//     border-radius: 0.25em;
-//     text-align: center;
-//     margin-top: 4em;
-//   }
-// }
-
 .popup {
   position: fixed;
   top: 0;
@@ -170,6 +145,7 @@ textarea {
     width: 350px;
     display: flex;
     align-items: flex-start;
+    color: var(--color-accent);
   }
 
   &__detail {
@@ -494,7 +470,7 @@ textarea {
 }
 .cont_btn_open_dets > a {
   display: block;
-  padding-top: -5px;
+  padding-top: 5px;
   width: 30px;
   height: 30px;
   background-color: rgb(6, 122, 70);
@@ -632,7 +608,7 @@ textarea {
 
   &__cta {
     text-decoration: none;
-    font-size: font-size(1);
+    font-size: 12px;
     border: 1px solid var(--color-accent);
     color: black;
     opacity: 50%;
@@ -662,6 +638,7 @@ textarea {
   text-align: center;
 
   &__img {
+    object-fit: contain;
     width: 250px;
     height: 180px;
     vertical-align: middle;
@@ -676,7 +653,7 @@ textarea {
 
   &__link {
     text-decoration: none;
-    color: rgb(6, 122, 70);
+    color: var(--color-accent);
   }
 }
 
@@ -696,7 +673,6 @@ textarea {
 .item-detail {
   display: block;
   padding: 15px 0;
-  padding-bottom: 0;
   color: var(--color-accent);
 }
 
@@ -710,43 +686,120 @@ textarea {
 
 // weekmenu
 
-.weekMenu {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -15px;
-  margin-right: -15px;
+.weeklyMenu-container {
+  background-color: var(--color-bg-tint);
+  margin-top: 280px;
+}
+
+.WeeklyMenu {
+  margin: 20px;
+
+  &__container {
+    display: flex;
+    flex-grow: 4;
+    justify-content: space-around;
+    width: 80%;
+    margin-left: 100px;
+
+    &__title {
+      color: var(--color-accent);
+      margin-top: -20px;
+    }
+  }
 
   &__item {
+    margin-bottom: 10px;
+    width: 250px;
+    height: 250px;
+    border-radius: 5px;
+    margin-left: 20px;
+    background-color: var(--color-basic-bg);
+    box-shadow: 1px 1px 20px -5px rgba(0, 0, 0, 0.5);
+  }
+
+  &__title {
+    justify-content: center;
+    color: var(--color-accent);
+    text-shadow: 2px 2px wheat;
+  }
+
+  &__btn-group {
     display: flex;
-    margin-bottom: 20px;
+    align-items: flex-end;
+    width: 15px;
+    margin: -38px 1px 10px 1px;
+  }
+
+  &__btn {
+    width: 5px;
+    height: 5px;
+    background-color: transparent;
+    color: var(--color-accent);
+    display: flex;
+    flex-direction: row;
   }
 }
 
 .previous {
   background-color: transparent;
-  border-color: rgb(6, 122, 70);
-  border-style: solid;
+  border: var(--color-accent) solid 1px;
   border-radius: 999px;
-  border-width: 1px;
   cursor: pointer;
-  height: 50px;
+  height: 45px;
   outline: none;
-  width: 50px;
+  width: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px;
-  margin: 8px 32px;
+  margin-left: 450px;
+
+  &__icon {
+    font-size: 25px;
+    color: var(--color-accent);
+  }
+}
+
+.next {
+  background-color: transparent;
+  border: var(--color-accent) solid 1px;
+  border-radius: 999px;
+  cursor: pointer;
+  height: 45px;
+  outline: none;
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 450px;
+  margin-top: -50px;
+
+  &__icon {
+    font-size: 25px;
+    color: var(--color-accent);
+  }
+}
+
+.chefshad-rating {
+  position: relative;
+  display: flex;
+  z-index: 23000;
+  height: 20px;
+  width: 20px;
+  margin: 5px 5px 5px;
 }
 
 .btn {
+  &__rating {
+    margin-right: 5px;
+    height: 50px;
+    width: 50px;
+    background-color: var(--color-bg-tint);
+  }
+
   &__icon {
     height: 20px;
     width: 20px;
-    margin-left: 10px;
-  }
-
-  &__radio {
-    display: none;
+    margin-left: 5px;
+    margin-bottom: 20px;
   }
 }

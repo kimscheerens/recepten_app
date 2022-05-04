@@ -8,6 +8,9 @@
 .user_container__title {
   margin: 4em;
   margin-bottom: 0;
+  font-size: 28px;
+  color: white;
+  text-shadow: 1px 1px var(--color-accent);
 }
 
 .login-page {
@@ -17,15 +20,16 @@
 }
 
 .error {
-  color: red;
+  color: var(--color-accent);
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .form {
   position: relative;
   z-index: 1;
   background: var(--color-basic-bg);
+  color: var(--color-accent);
   max-width: 360px;
   margin: 0 auto 100px;
   padding: 45px;
@@ -36,6 +40,7 @@
 .form input {
   outline: 0;
   background: #f2f2f2;
+  color: var(--color-accent);
   width: 100%;
   border: 0;
   margin: 0 0 15px;
@@ -47,13 +52,14 @@
 .form button {
   text-transform: uppercase;
   outline: 0;
-  background: var(--color-accent);
+  background: var(--color-accent-light);
   width: 100%;
   border: 0;
   padding: 15px;
-  color: #ffffff;
+  color: var(--color-accent);
   font-size: 14px;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .form .message {

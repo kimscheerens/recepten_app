@@ -20,7 +20,7 @@ export default function Login() {
       alert("Failed to sign in");
     }
     setLoading(false);
-    setError("error");
+    setError("You are logged in");
   }
 
   async function handleLogout() {
@@ -31,7 +31,7 @@ export default function Login() {
       alert("error");
     }
     setLoading(false);
-    setError("error");
+    setError("You are logged out");
   }
 
   return (
@@ -43,9 +43,9 @@ export default function Login() {
             <div className="register-form">
               {error && <span className="error">{error}</span>}
               <span>Email:</span>
-              <input type="email" ref={emailRef} required ></input>
+              <input type="email" ref={emailRef} required></input>
               <span>Password:</span>
-              <input type="password" ref={passwordRef} required ></input>
+              <input type="password" ref={passwordRef} required></input>
               <button disabled={loading} onClick={handleLogin} type="submit">
                 Log in
               </button>
@@ -55,7 +55,7 @@ export default function Login() {
             </div>
             <div>
               <span className="message">
-                Don't have an account? <Link to="/CreateUser">Create one</Link>
+                Don't have an account? <Link to="/CreateUser"> Create one</Link>
               </span>
             </div>
           </div>
