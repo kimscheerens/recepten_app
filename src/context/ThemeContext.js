@@ -1,17 +1,70 @@
-import React, { createContext, useState} from "react";
+import React, { useState, useLayoutEffect, createContext } from "react";
 
-export const ThemeContext = createContext();
+const ThemeContext = createContext({
+  dark: false,
+  toggle: () => {},
+});
 
-export function ThemeProvider({ children }) {
-	const [backgroundColor, setBackgroundColor] = useState('rgb(124, 13, 14)');
+export default ThemeContext;
 
-	const changeColor = (color) => setBackgroundColor(color);
-	return (
-		<ThemeContext.Provider value={{ backgroundColor, changeColor }}>
-			{children}
-		</ThemeContext.Provider>
-	);
+export function ThemeProvider(props) {
+  // keeps state of the current chosen theme
+  const [dark, setDark] = useState(false);
+
+  // paints the app before it renders elements
+  useLayoutEffect(() => {
+    const lastTheme = window.localStorage.getItem("darkTheme");
+
+    if (lastTheme === "true") {
+      setDark(true);
+      applyTheme(darkTheme);
+    }
+
+    if (!lastTheme || lastTheme === "false") {
+      setDark(false);
+      applyTheme(lightTheme);
+    }
+    // if state changes, repaints the app
+  }, [dark]);
+
+  // here is the connection to change the lightTheme const to css
+  const applyTheme = (theme) => {
+    console.log(theme);
+    const root = document.getElementsByTagName("body")[0];
+    root.style.cssText = theme.join(";");
+  };
+
+  const toggle = () => {
+    setDark(!dark);
+    window.localStorage.setItem("darkTheme", !dark);
+  };
+
+  /* theme colors ---------------------------------------- */
+  const lightTheme = [
+    "--color-text: hsl(10, 80.2%, 10%)",
+    "--color-accent: #e53935",
+    "--color-bg-tint: hsl(10, 10%, 95%)",
+    "--color-accent-combo: #fed000",
+    "--color-accent-light: rgba(249, 182, 11, 0.2)",
+    "--color-basic-bg: white",
+    "--color-grey: #777777",
+    "--color-light-green: #1bcc5c",
+  ];
+
+  const darkTheme = [
+    "--color-text: white",
+    "--color-accent: #fed000",
+    "--color-bg-tint: hsl(10, 80.2%, 10%)",
+    "--color-accent-combo: #e53935",
+    "--color-accent-light: rgba(249, 182, 11, 0.2)",
+    "--color-basic-bg: hsl(10, 80.2%, 10%)",
+    "--color-grey: #777777",
+    "--color-light-green: #1bcc5c",
+  ];
+
+  return (
+    <ThemeContext.Provider value={{ dark, toggle }}>
+      {props.children}
+    </ThemeContext.Provider>
+  );
 }
-
-
-

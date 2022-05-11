@@ -1,12 +1,9 @@
 import React from "react";
-import { db } from "../../utils/firebase";
 import { useState, useEffect } from "react";
-import { updateItem, deleteItem, recipeCollectionRef } from "../../utils/crud";
-import {
-  updateIngredientsByPersons
-} from "./VariablesRecipe";
+import { updateItem, deleteItem, recipeCollectionRef, writeFavoItem } from "../../utils/crud";
+import { updateIngredientsByPersons } from "./VariablesRecipe";
 import img_white from "../../Assets/wit.png";
-import { collection, onSnapshot, addDoc } from "firebase/firestore";
+import { onSnapshot, addDoc } from "firebase/firestore";
 import ImagesUpload from "../ImagesUpload";
 import RecipeSelection from "./RecipeSelection";
 
@@ -138,178 +135,179 @@ function Recipe() {
         <h1 className="recipe__title">My recipes</h1>
         <button onClick={() => setPopupActive(!popupActive)}>Add recipe</button>
         <div className="recipe-collection">
-        <RecipeSelection />
-        <ul className="recipe__list">
-          {recipes.map((recipe, i) => (
-            <div className="recipe-item" key={recipe.id}>
-              <div className="recipe-item__container">
-                <h3 className="recipe-item__title">{recipe.title}</h3>
-                <p
-                  className="recipe-item__detail"
-                  dangerouslySetInnerHTML={{ __html: recipe.desc }}
-                ></p>
-              </div>
-              <img
-                className="recipe-item__img"
-                src={recipe.imageUrl}
-                alt="image of the recipe"
-              ></img>
-              <div className="recipe-item__content">
-                <button
-                  className="recipe-item__btn"
-                  onClick={() => handleView(recipe.id)}
-                >
-                  View {recipe.viewing ? "less" : "more"}
-                </button>
-                <button
-                  className="recipe-item__btn"
-                  onClick={() => deleteItem(recipe.id)}
-                >
-                  🗑️
-                </button>
-                <button
-                  className="recipe-item__btn"
-                  onClick={() => updateItem(recipe.id)}
-                >
-                  ✏️
-                </button>
-                <button className="recipe-item__btn">
-                  <img
-                    src={img_white}
-                    alt="koksmutsje wit of zwart"
-                    className="recipe-item__btn-icon"
-                  />
-                </button>
-              </div>
-              <div className="labels">
-                <span className="labels__labels">Labels: {recipe.label}</span>
-                <span className="labels__allergenen">
-                  Allergies: {recipe.allergies}
-                </span>
-                <span className="labels__info">
-                  Raadpleeg altijd het productetiket voor de meest accurate
-                  informatie over ingrediënten en allergenen.
-                </span>
-              </div>
-              {recipe.viewing && (
-                <div>
-                  <aside className="aside">
-                    <span className="aside__time">
-                      Bereidingstijd: {recipe.time}
-                      <i>⏱️</i>
-                    </span>
-                    <span className="aside__persons">Persons: 2 🍴</span>
-                    <span className="aside__price">
-                      Price: {recipe.price} €
-                    </span>
-                  </aside>
-                  <div className="cont_over_hidden">
-                    <div className="numbre_container">
-                      Persons:
-                      <button
-                        onClick={() =>
-                          updateIngredientsByPersons(
-                            recipe.id,
-                            recipe.ingredient
-                          )
-                        }
-                        className="numbre_button"
-                      >
-                        1
-                      </button>
-                      <button
-                        onClick={() =>
-                          updateIngredientsByPersons(
-                            recipe.id,
-                            recipe.ingredient
-                          )
-                        }
-                        className="numbre_button"
-                      >
-                        2
-                      </button>
-                      <button
-                        onClick={() =>
-                          updateIngredientsByPersons(
-                            recipe.id,
-                            recipe.ingredient
-                          )
-                        }
-                        className="numbre_button"
-                      >
-                        3
-                      </button>
-                      <button
-                        onClick={() =>
-                          updateIngredientsByPersons(
-                            recipe.id,
-                            recipe.ingredient
-                          )
-                        }
-                        className="numbre_button"
-                      >
-                        4
-                      </button>
-                      <button
-                        onClick={() =>
-                          updateIngredientsByPersons(
-                            recipe.id,
-                            recipe.ingredient
-                          )
-                        }
-                        className="numbre_button"
-                      >
-                        5
-                      </button>
-                      <button
-                        onClick={() =>
-                          updateIngredientsByPersons(
-                            recipe.id,
-                            recipe.ingredient
-                          )
-                        }
-                        className="numbre_button"
-                      >
-                        6
-                      </button>
-                    </div>
-                    <div className="cont_tabs">
-                      <ul>
-                        <li>
-                          <a href="#ingredients">
-                            <h4 id="ingredients">INGREDIENTS</h4>
-                            <div className="cont_text_ingredients">
-                              {recipe.ingredients.map((ingredient, i) => (
-                                <li key={i}>{ingredient}</li>
-                              ))}
-                            </div>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#preparation">
-                            <h4 id="preparation">PREPARATION</h4>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="cont_text_det_preparation">
-                      <h4 className="cont_title_preparation">Steps</h4>
-                    </div>
-                    <div className="cont_info_preparation">
-                      <ol className="cont_text_det_preparation">
-                        {recipe.steps.map((step, i) => (
-                          <li key={i}>{step}</li>
-                        ))}
-                      </ol>
+          <RecipeSelection />
+          <ul className="recipe__list">
+            {recipes.map((recipe, i) => (
+              <div className="recipe-item" key={recipe.id}>
+                <div className="recipe-item__container">
+                  <h3 className="recipe-item__title">{recipe.title}</h3>
+                  <p
+                    className="recipe-item__detail"
+                    dangerouslySetInnerHTML={{ __html: recipe.desc }}
+                  ></p>
+                </div>
+                <img
+                  className="recipe-item__img"
+                  src={recipe.imageUrl}
+                  alt="image of the recipe"
+                ></img>
+                <div className="recipe-item__content">
+                  <button
+                    className="recipe-item__btn"
+                    onClick={() => handleView(recipe.id)}
+                  >
+                    View {recipe.viewing ? "less" : "more"}
+                  </button>
+                  <button
+                    className="recipe-item__btn"
+                    onClick={() => deleteItem(recipe.id)}
+                  >
+                    🗑️
+                  </button>
+                  <button
+                    className="recipe-item__btn"
+                    onClick={() => updateItem(recipe.id)}
+                  >
+                    ✏️
+                  </button>
+                  <button className="recipe-item__btn">
+                    <img
+                      onClick={() => writeFavoItem()}
+                      src={img_white}
+                      alt="koksmutsje wit of zwart"
+                      className="recipe-item__btn-icon"
+                    />
+                  </button>
+                </div>
+                <div className="labels">
+                  <span className="labels__labels">Labels: {recipe.label}</span>
+                  <span className="labels__allergenen">
+                    Allergies: {recipe.allergies}
+                  </span>
+                  <span className="labels__info">
+                    Raadpleeg altijd het productetiket voor de meest accurate
+                    informatie over ingrediënten en allergenen.
+                  </span>
+                </div>
+                {recipe.viewing && (
+                  <div>
+                    <aside className="aside">
+                      <span className="aside__time">
+                        Bereidingstijd: {recipe.time}
+                        <i>⏱️</i>
+                      </span>
+                      <span className="aside__persons">Persons: 2 🍴</span>
+                      <span className="aside__price">
+                        Price: {recipe.price} €
+                      </span>
+                    </aside>
+                    <div className="cont_over_hidden">
+                      <div className="numbre_container">
+                        Persons:
+                        <button
+                          onClick={() =>
+                            updateIngredientsByPersons(
+                              recipe.id,
+                              recipe.ingredient
+                            )
+                          }
+                          className="numbre_button"
+                        >
+                          1
+                        </button>
+                        <button
+                          onClick={() =>
+                            updateIngredientsByPersons(
+                              recipe.id,
+                              recipe.ingredient
+                            )
+                          }
+                          className="numbre_button"
+                        >
+                          2
+                        </button>
+                        <button
+                          onClick={() =>
+                            updateIngredientsByPersons(
+                              recipe.id,
+                              recipe.ingredient
+                            )
+                          }
+                          className="numbre_button"
+                        >
+                          3
+                        </button>
+                        <button
+                          onClick={() =>
+                            updateIngredientsByPersons(
+                              recipe.id,
+                              recipe.ingredient
+                            )
+                          }
+                          className="numbre_button"
+                        >
+                          4
+                        </button>
+                        <button
+                          onClick={() =>
+                            updateIngredientsByPersons(
+                              recipe.id,
+                              recipe.ingredient
+                            )
+                          }
+                          className="numbre_button"
+                        >
+                          5
+                        </button>
+                        <button
+                          onClick={() =>
+                            updateIngredientsByPersons(
+                              recipe.id,
+                              recipe.ingredient
+                            )
+                          }
+                          className="numbre_button"
+                        >
+                          6
+                        </button>
+                      </div>
+                      <div className="cont_tabs">
+                        <ul>
+                          <li>
+                            <a href="#ingredients">
+                              <h4 id="ingredients">INGREDIENTS</h4>
+                              <div className="cont_text_ingredients">
+                                {recipe.ingredients.map((ingredient, i) => (
+                                  <li key={i}>{ingredient}</li>
+                                ))}
+                              </div>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#preparation">
+                              <h4 id="preparation">PREPARATION</h4>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="cont_text_det_preparation">
+                        <h4 className="cont_title_preparation">Steps</h4>
+                      </div>
+                      <div className="cont_info_preparation">
+                        <ol className="cont_text_det_preparation">
+                          {recipe.steps.map((step, i) => (
+                            <li key={i}>{step}</li>
+                          ))}
+                        </ol>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </ul>
+                )}
+              </div>
+            ))}
+          </ul>
+        </div>
       </div>
-</div>
       {popupActive && (
         <div className="popup">
           <div className="popup-inner">

@@ -31,9 +31,23 @@ export const writeItem = async () => {
   console.log(docRef.id);
 };
 
+export const writeFavoItem = async (id) => {
+  console.log(writeFavoItem);
+  const payload = {};
+  const favoRef = await addDoc(favoritesCollectionRef, payload);
+  console.log(favoRef);
+  console.log(favoRef.recept);
+  return {
+    image: "",
+    recipeId: "",
+    title: "",
+    value: 0,
+  };
+};
+
 // R read item
 export const readItem = async (id) => {
- const docSnap = await getDoc(recipeCollectionRef, id);
+  const docSnap = await getDoc(recipeCollectionRef, id);
 
   if (docSnap.exists()) {
     console.log(docSnap.data());
@@ -42,7 +56,6 @@ export const readItem = async (id) => {
     console.log("No such document!");
   }
 };
-
 
 // R readAllItems
 export const readAllItem = async (id) => {

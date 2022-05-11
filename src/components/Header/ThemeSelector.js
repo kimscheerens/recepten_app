@@ -1,26 +1,16 @@
-import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
-import React from "react";
+import React, { useContext } from "react";
+import ThemeContext from "../../context/ThemeContext";
+import { IoMdMoon as Moon, IoMdSunny as Sun } from "react-icons/io";
 
-const themeColors = ["rgb(124, 13, 14)", "rgba(249, 182, 11, 0.2)"];
-
-const ThemeSelector = () => {
-  const { changeColor } = useContext(ThemeContext);
-  const { backgroundColor } = useContext(ThemeContext);
+export default function ThemeSelector() {
+  const { dark, toggle } = useContext(ThemeContext);
 
   return (
-    <div className="theme_selector" style={{ backgroundColor }}>
-      <div className="theme_buttons">
-        {themeColors.map((color) => (
-          <div
-            //   key={color}
-            onClick={() => changeColor(color)}
-            style={{ background: color }}
-          />
-        ))}
-      </div>
+    <div className="theme">
+    <button className="sun-moon" onClick={() => toggle()}>
+      <Sun className={`icon ${!dark ? "active" : ""}`} />
+      <Moon className={`icon ${dark ? "active" : ""}`} />
+    </button>
     </div>
   );
-};
-
-export default ThemeSelector;
+}

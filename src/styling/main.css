@@ -1,28 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&family=Ubuntu:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&family=Poppins:wght@300;400;600&display=swap");
-/* theme colors ---------------------------------------- */
-.theme-light {
-  --color-text: hsl(10, 80.2%, 10%);
-  --color-accent: #e53935;
-  --color-accent-combo: #fed000;
-  --ccolor-accent-light: rgba(249, 182, 11, 0.2);
-  --color-bg-tint: hsl(10, 10%, 95%);
-  --color-basic-bg: white;
-  --color-grey: #777777;
-  --color-light-green: #1bcc5c;
-}
-
-.theme-dark {
-  --color-text: white;
-  --color-accent: #fed000;
-  --color-accent-combo: #e53935;
-  --ccolor-accent-light: rgba(249, 182, 11, 0.2);
-  --color-bg-tint: hsl(10, 80.2%, 10%);
-  --color-basic-bg: hsl(10, 80.2%, 10%);
-  --color-grey: #777777;
-  --color-light-green: #1bcc5c;
-}
-
 /* mixins ---------------------------------------------- */
 /* basic defaults -------------------------------------- */
 html {
@@ -31,20 +8,17 @@ html {
 }
 
 *,
+*:not(body) {
+  transition: all 0.5s ease;
+}
+
 *:before,
 *:after {
   box-sizing: inherit;
 }
 
 body {
-  --color-text: hsl(10, 80.2%, 10%);
-  --color-accent: rgb(124, 13, 14);
-  --color-accent-combo: #fed000;
-  --ccolor-accent-light: rgba(249, 182, 11, 0.2);
-  --color-bg-tint: hsl(43, 95%, 51%, 20%);
-  --color-basic-bg: white;
-  --color-grey: #777777;
-  --color-light-green: #1bcc5c;
+  color: var(--color-text);
   font-family: "Dosis", "Poppins", sans-serif;
 }
 

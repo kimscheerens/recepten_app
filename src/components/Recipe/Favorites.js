@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import img_test from "../../Assets/test2.jpg";
 import img_white from "../../Assets/wit.png";
 import img_black from "../../Assets/black.png";
-import { readAllItem, favoritesCollectionRef } from "../../utils/crud";
+import {
+  readAllItem,
+  favoritesCollectionRef,
+  deleteFavorite,
+} from "../../utils/crud";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../../utils/firebase";
 import RecipeRating from "./RecipeRating";
@@ -14,7 +18,9 @@ const Favorites = () => {
   const [favorite, setFavorite] = useState([]);
   const [favoItem, setFavoItem] = useState({
     recipeId: "",
+    title: "",
     value: "",
+    image: "",
   });
 
   // to get all the data from firestore
@@ -50,7 +56,7 @@ const Favorites = () => {
                     <a className="btn btn-view">
                       <img
                         src={img_white}
-                        alt="koksmutsje wit of zwart"
+                        alt="chefshad white or black"
                         className="btn"
                       />
                     </a>
@@ -58,6 +64,13 @@ const Favorites = () => {
                 </div>
                 <div className="item-detail">
                   <h3 className="item-name">{favorit.title} </h3>
+                  <button
+                    className="item__btn"
+                    onClick={() => deleteFavorite()}
+                  >
+                    {" "}
+                    🗑️
+                  </button>
                   <RecipeRating />
                 </div>
               </article>

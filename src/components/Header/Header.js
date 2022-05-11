@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import img_icon from "../../Assets/logo.jpg";
 import img_avatar from "../../Assets/chef-kok.webp";
 import img_head from "../../Assets/head_icon.jpg";
 import CreateUser from "../User/CreateUser";
 import { useAuth } from "../../utils/useAuth";
-import { getFirestore } from "firebase/firestore";
 import ThemeSelector from "./ThemeSelector";
+
 
 const Header = () => {
   const currentUser = useAuth();
@@ -54,8 +54,9 @@ const Header = () => {
             </li>
             <div className="shop">
               <p className="shop__item">2</p>
-            </div>
+            </div>         
           </ul>
+          <ThemeSelector/>
           <li className="nav-item dropdown">
             <a href="/" className="main-nav__item" component={CreateUser}>
               <img
@@ -71,7 +72,7 @@ const Header = () => {
             <ul className="dropdown-menu">
               <li className="dropdown-item">
                 <a href="/Login" className="main-nav__sub-item">
-                  {currentUser ? "log out" : "log in"}
+                  {currentUser ? "logout" : "log in"}
                 </a>
               </li>
               <li className="dropdown-item">
@@ -83,7 +84,6 @@ const Header = () => {
           </li>
         </nav>
       </div>
-      {/* <ThemeSelector /> */}
     </header>
   );
 };

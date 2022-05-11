@@ -109,9 +109,11 @@ textarea {
   font-weight: 400;
 
   &__title {
-    padding-top: 40px;
-    font-weight: 700;
-    padding-right: 16px;
+    margin: 4em;
+    margin-bottom: 0;
+    font-size: 28px;
+    color: white;
+    text-shadow: 1px 1px var(--color-accent);
   }
 
   &__list {
@@ -608,8 +610,8 @@ textarea {
 
   &__cta {
     text-decoration: none;
-    font-size: 12px;
-    border: 1px solid var(--color-accent);
+    font-size: 16px;
+    border: 1px solid rgb(6, 122, 70);
     color: black;
     opacity: 50%;
     padding: 1em;
@@ -652,8 +654,10 @@ textarea {
   }
 
   &__link {
-    text-decoration: none;
-    color: var(--color-accent);
+    background-color: white;
+    color: rgb(6, 122, 70);
+    font-size: 14px;
+    border: white;
   }
 }
 
