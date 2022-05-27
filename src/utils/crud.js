@@ -1,23 +1,24 @@
-import { async } from "@firebase/util";
 import {
   collection,
-  onSnapshot,
   addDoc,
-  setDoc,
   doc,
   deleteDoc,
-  getDocs,
   updateDoc,
   getDoc,
-  QuerySnapshot,
+  query,
+  limit,
 } from "firebase/firestore";
 import { db } from "./firebase";
 import React, { useEffect, useState } from "react";
 
+
 export const recipeCollectionRef = collection(db, "recept");
 // console.log(recipeCollectionRef);
 
-export const favoritesCollectionRef = collection(db, "favorites");
+export const favoritesCollectionRef = query(
+  collection(db, "favorites"),
+  limit(4)
+);
 // console.log(favoritesCollectionRef);
 
 export const shoppingCollectionRef = collection(db, "shoppingCart");
@@ -31,18 +32,17 @@ export const writeItem = async () => {
   console.log(docRef.id);
 };
 
-export const writeFavoItem = async (id) => {
-  console.log(writeFavoItem);
-  const payload = {};
-  const favoRef = await addDoc(favoritesCollectionRef, payload);
-  console.log(favoRef);
-  console.log(favoRef.recept);
-  return {
-    image: "",
-    recipeId: "",
-    title: "",
+export const writeFavoItem = async (recipe) => {
+  const favoRef = collection(db, "favorites");
+  const payload = {
+    image: `${recipe.imageUrl}`,
+    recipeId: `${recipe.id}`,
+    title: `${recipe.title}`,
     value: 0,
   };
+  await addDoc(favoRef, payload);
+  console.log(favoRef);
+  console.log(payload);
 };
 
 // R read item
@@ -57,6 +57,9 @@ export const readItem = async (id) => {
   }
 };
 
+// get all favoItems
+// export const favoPosts = db.collection("favorites").where("recipeId", )
+
 // R readAllItems
 export const readAllItem = async (id) => {
   const docRef = doc(db, "recept", id);
@@ -69,13 +72,44 @@ export const readAllItem = async (id) => {
     console.log("No such document!");
   }
 };
+// console.log(readAllItem);
 
 // U update Item
 export const updateItem = async (id, updatedRecipe) => {
-  const docRef = doc(db, "recept", id);
+  const docRef = doc(
+    db,
+    "recept",
+    id
+    // title,
+    // imageUrl,
+    // desc,
+    // ingredients,
+    // steps,
+    // label,
+    // allergies,
+    // time
+  );
   console.log(docRef);
   await updateDoc(docRef, updatedRecipe);
 };
+
+// addrating to DB
+
+export const updateRating = async ( i ) => {
+  const docRef = doc(db, "favorites", "value");  
+  await updateDoc(docRef, { value: `${i}` });
+};
+
+console.log(updateRating);
+console.log(updateDoc);
+
+//update shoppingCart
+// export const updateCart = async (id) => {
+//   const docRef = doc(db, "shoppingCart", id);
+//   console.log(docRef);
+//   await updateDoc(docRef, { quantity: `${increment or decrement}` });
+// };
+// console.log(updateCart);
 
 // D Delete Item's
 export const deleteItem = async (id) => {
@@ -86,6 +120,7 @@ export const deleteItem = async (id) => {
 export const deleteFavorite = async (id) => {
   const docRef = doc(db, "favorites", id);
   await deleteDoc(docRef);
+  console.log(deleteFavorite);
 };
 
 export const deleteShopping = async (id) => {

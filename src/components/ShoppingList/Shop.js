@@ -42,6 +42,14 @@ function Shop() {
     db.collection("shoppingCart").doc(`${item.id}`).set(item, { merge: true });
   }
 
+  // function increase(item) {
+  //   db.collection("shoppingCart").doc(`${item.id}`).update("quantity", quantity.increment(1))
+
+  // }
+  // function decrease(item) {
+  //   db.collection("shoppingCart").doc(`${item.id}`).update("quantity", quantity.increment(-1))
+  // }
+
   function total() {
     let x = 0;
     cart.map((i) => {
@@ -51,61 +59,71 @@ function Shop() {
   }
 
   return (
-    <><div className="background">
-      <section className="shoppingList">
-        <h4>Your ShoppingList 🛒</h4>
-        <table classNameName="shoppingList-container">
-          <thead classNameName="shoppingList-header">
-            <tr>
-              <th>#</th>
-              <th>Product</th>
-              <th>Product Name</th>
-              <th>Price</th>
-              <th>Quantity</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {cart.map((i, index) => (
-              <tr key={i.id}>
-                <th>{index + 1}</th>
-                <th>
-                  <img src={i.url} style={{ width: "4rem" }} />
-                </th>
-                <td>{i.name}</td>
-                <td>{i.price} €</td>
-                <td>
-                  <button
-                    // onClick={() => decrease(i)}
-                    classNameName="btn__sm"
-                  >
-                    -
-                  </button>
-                  {i.quantity}
-                  <button
-                    // onClick={() => increase(i)}
-                    classNameName="btn__sm"
-                    size="sm"
-                  >
-                    +
-                  </button>
-                  <button classNameName="btn__sm"> 🗑️</button>
-                </td>
+    <>
+      <div className="background">
+        <section className="shoppingList">
+          <h4>Your ShoppingList 🛒</h4>
+          <table classNameName="shoppingList-container">
+            <thead classNameName="shoppingList-header">
+              <tr>
+                <th>#</th>
+                <th>Product</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
               </tr>
-            ))}
-          </tbody>
-          <button onClick={() => addtocart}>add to cart</button>
-        </table>
+            </thead>
 
-        <div classNameName="total">
-          <div classNameName="total__item">
-            <h4>TOTAL: {total()} €</h4>
+            <tbody>
+              {cart.map((i, index) => (
+                <tr key={i.id}>
+                  <th>{index + 1}</th>
+                  <th>
+                    <img src={i.url} style={{ width: "4rem" }} />
+                  </th>
+                  <td>{i.name}</td>
+                  <td>{i.price} €</td>
+                  <td>
+                    <button
+                      // onClick={() => decrease(i)}
+                      classNameName="btn__sm"
+                    >
+                      -
+                    </button>
+                    {i.quantity}
+                    <button
+                      // onClick={() => increase(i)}
+                      classNameName="btn__sm"
+                      size="sm"
+                    >
+                      +
+                    </button>
+                    <button
+                      classNameName="btn__sm"
+                      onClick={() => deleteShopping(cart.id)}
+                    >
+                      🗑️
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+            <button onClick={() => addtocart}>add to cart</button>
+          </table>
+
+          <div classNameName="total">
+            <div classNameName="total__item">
+              <h4>TOTAL: {total()} €</h4>
+            </div>
+            <span>
+              Printlist
+              <button onClick={() => window.print()} classNameName="printer">
+                {" "}
+                🖨️{" "}
+              </button>
+            </span>
           </div>
-          <span>
-            Printlist<button classNameName="printer"> 🖨️ </button>
-          </span>
-        </div>
-      </section>
+        </section>
       </div>
     </>
   );

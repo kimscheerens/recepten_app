@@ -16,10 +16,9 @@ const WeekMenu = () => {
       </div>
       <div className="buttons">
         <button className="previous">
-          <i className="previous__icon"> &#171;</i>{" "}
+          <i className="previous__icon"> &#171;</i>
         </button>
         <button className="next">
-          {" "}
           <i className="next__icon"> &#187; </i>
         </button>
       </div>
@@ -35,8 +34,9 @@ const WeekMenu = () => {
             </div>
             <img />
             <p className="WeeklyMenu__recipe-title">Title recipe</p>
-
-            <button className="WeeklyMenu__btn">view 🍽️</button>
+          {/* <a href={`/recipe/${recipe.id}`}> */}
+            <button className="WeeklyMenu__btn" >view 🍽️</button>
+            {/* </a> */}
           </li>
           <li className="WeeklyMenu__item">
             <span className="WeeklyMenu__title"> Lunch </span>

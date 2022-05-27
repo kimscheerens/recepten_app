@@ -35,7 +35,7 @@ export default function CreateUser() {
           <div className="form">
             <div className="register-form">
               {error && <span className="error">{error}</span>}
-              <input ref={emailRef} placeholder="Email"/>
+              <input ref={emailRef} placeholder="Email" />
               <input ref={passwordRef} type="password" placeholder="Password" />
               <input
                 ref={passwordconfirmRef}
@@ -43,11 +43,11 @@ export default function CreateUser() {
                 placeholder="confirm your Password"
               />
               <button disabled={loading || currentUser} onClick={handleSignup}>
-                Sign up
+                Signup
               </button>
               <div>
                 <span className="message">
-                  Already have an account? <Link to="/Login">Log in</Link>
+                  Already have an account? <Link to="/Login">Login</Link>
                 </span>
               </div>
             </div>

@@ -1,0 +1,217 @@
+.container {
+  margin-top: 300px;
+}
+
+.label,
+.label-range {
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.input-group {
+  margin-bottom: 2rem;
+}
+
+.label-range {
+  margin-bottom: 2.5rem;
+}
+
+.listItem-wrap img {
+  width: 100%;
+  border-radius: 15px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.listItem-wrap header {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0 1rem 0;
+  align-items: center;
+}
+
+.listItem-wrap header span {
+  font-size: 0.7rem;
+  background-color: #97ffff;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.listItem-wrap footer {
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.listItem-wrap footer p:first-child span {
+  color: rgba(0, 0, 0, 0.26);
+  font-weight: 600;
+}
+
+.list-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+}
+
+.listItem-wrap img {
+  width: 100%;
+  border-radius: 15px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.listItem-wrap header {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0 1rem 0;
+  align-items: center;
+}
+
+.listItem-wrap header span {
+  font-size: 0.7rem;
+  background-color: #97ffff;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.listItem-wrap footer {
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.listItem-wrap footer p:first-child span {
+  color: rgba(0, 0, 0, 0.26);
+  font-weight: 600;
+}
+
+.root {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.toggle {
+  font-size: 0.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+}
+
+.wrap {
+  width: 25%;
+  z-index: 500000;
+  margin-left: 0;
+}
+
+.label {
+  font-size: 0.8rem;
+  color: var(--color-text);
+}
+
+.checkbox-text {
+  border: red 2px solid;
+}
+
+.recipe-collection {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-filters-form {
+  margin: 0 0 0 50px;
+  padding: 0;
+  width: 250px;
+  height: 1350px;
+  box-shadow: 1px 1px 20px -5px rgba(0, 0, 0, 0.5);
+  background-color: var(--color-bg-tint);
+}
+
+.filter-section__title {
+  color: var(--color-accent);
+}
+
+.filter-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.filter-list__item {
+  margin-left: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+span {
+  margin-left: 4px;
+  display: block;
+  font-size: 14px;
+}
+
+input {
+  border: 1px solid #bbb;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  clear: none;
+  cursor: pointer;
+  display: inline-block;
+  height: 15px;
+  line-height: 0;
+  outline: 0;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 15px;
+}
+
+.item__btn {
+  z-index: 300000;
+  margin-top: 35px;
+  box-shadow: rgb(6, 122, 70) 0px 0px 0px 1px;
+  background-color: rgb(210, 248, 149);
+  color: rgb(6, 122, 70);
+  border: 1px solid rgb(6, 122, 70);
+}
+
+.MuiSlider-root {
+  width: 80%;
+}
+
+.MuiSlider-thumb {
+  color: var(--color-accent);
+}
+
+.MuiSlider-rail {
+  color: var(--color-accent-combo);
+}
+
+.MuiSlider-track {
+  color: var(--color-accent);
+  width: 100px;
+}
+
+.dots {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.dropdown-menu-detail {
+  display: none;
+}
+
+.dropdown-item-detail {
+  position: relative;
+}
+
+.dropdown-item:hover .dropdown-menu-detail {
+  display: block;
+}
+
+.dropdown-item-detail:hover {
+  color: var(--color-accent);
+}/*# sourceMappingURL=RecipeAside.css.map */

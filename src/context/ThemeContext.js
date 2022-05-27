@@ -29,7 +29,6 @@ export function ThemeProvider(props) {
 
   // here is the connection to change the lightTheme const to css
   const applyTheme = (theme) => {
-    console.log(theme);
     const root = document.getElementsByTagName("body")[0];
     root.style.cssText = theme.join(";");
   };
@@ -40,26 +39,29 @@ export function ThemeProvider(props) {
   };
 
   /* theme colors ---------------------------------------- */
+
   const lightTheme = [
-    "--color-text: hsl(10, 80.2%, 10%)",
-    "--color-accent: #e53935",
-    "--color-bg-tint: hsl(10, 10%, 95%)",
-    "--color-accent-combo: #fed000",
+    "--color-text: RGB(0, 0, 0)",
+    "--color-accent: RGB(165, 32, 25)",
+    "--color-bg-tint: RGB(244, 241, 241)",
+    "--color-accent-combo: RGB(254, 208, 0)",
     "--color-accent-light: rgba(249, 182, 11, 0.2)",
-    "--color-basic-bg: white",
-    "--color-grey: #777777",
-    "--color-light-green: #1bcc5c",
+    "--color-basic-bg: RGB(255, 255, 255)",
+    "--color-grey: RGB(119, 119, 119)",
+    "--color-light-green: RGB(27, 204, 92)",
+    "--color-green: RGB(6, 122, 70)",
   ];
 
   const darkTheme = [
-    "--color-text: white",
-    "--color-accent: #fed000",
-    "--color-bg-tint: hsl(10, 80.2%, 10%)",
-    "--color-accent-combo: #e53935",
+    "--color-text: RGB(255, 255, 255)",
+    "--color-accent: RGB(254, 208, 0)",
+    "--color-bg-tint: RGB(244, 241, 241)",
+    "--color-accent-combo: RGB(165, 32, 25)",
     "--color-accent-light: rgba(249, 182, 11, 0.2)",
-    "--color-basic-bg: hsl(10, 80.2%, 10%)",
-    "--color-grey: #777777",
-    "--color-light-green: #1bcc5c",
+    "--color-basic-bg: RGB(165, 32, 25)",
+    "--color-grey: RGB(119, 119, 119)",
+    "--color-light-green:  RGB(6, 122, 70)",
+    "--color-green: RGB(27, 204, 92)",
   ];
 
   return (

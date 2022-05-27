@@ -2,8 +2,11 @@
 import "./App.css";
 import "../src/styling/main.css";
 import "../src/components/Header/header.css";
-import "../src/components/Recipe/recipe.css";
-import "../src/components/Recipe/RecipeAside.css";
+import "../src/components/Recipe/Styling/recipe.css";
+import "../src/components/Recipe/Styling/favorites.css";
+import "../src/components/Recipe/Styling/recipeDetail.css";
+// import "../src/components/Recipe/Styling/recipeList.css";
+import "../src/components/RecipeAside/Styling/RecipeAside.css";
 import "../src/components/ShoppingList/Shopping.css";
 import "../src/components/User/user.css";
 
@@ -14,7 +17,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer";
 import Shop from "./components/ShoppingList/Shop";
 import Contact from "./components/Contact";
-import RecipeList from "./components/Recipe/RecipeList";
+import Recipe from "./components/Recipe/Recipe";
 import RecipeDetail from "./components/Recipe/RecipeDetail";
 import WeekMenu from "./components/Recipe/WeekMenu";
 import Home from "./components/Header/Home";
@@ -25,6 +28,7 @@ import Login from "./components/User/Login";
 import { Router } from "@gatsbyjs/reach-router";
 import { RecipeProvider } from "./context/RecipeContext";
 import Favorites from "./components/Recipe/Favorites";
+import RecipeSelection from "./components/RecipeAside/RecipeSelection";
 
 function App() {
   return (
@@ -33,8 +37,9 @@ function App() {
       <RecipeProvider>
         <Router className="container">
           <Home exact path="/" />
-          <RecipeList path="/RecipeDetail" />
-          <RecipeDetail path="/RecipeList" />
+          <Recipe path="/RecipeList" />
+          <RecipeDetail path="/recipe/:recipeid" />
+          <RecipeSelection path="/RecipeSelection" />
           <Favorites path="/favorites" />
           <WeekMenu path="/RecipeList/WeekMenu" />
           <Shop path="/shop" />

@@ -30,6 +30,7 @@ const ImagesUpload = ({ setImageUrl }) => {
     <div>
       <input
         type="file"
+        className="form-group__input-img"
         onChange={(e) => setImageUpload({ imageUrl: e.target.files[0] })}
       ></input>
       <button onClick={uploadImage}>upload image</button>

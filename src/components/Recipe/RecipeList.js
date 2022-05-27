@@ -1,20 +1,20 @@
-import { useEffect, useState, useStateValue } from "react";
+import { useEffect, useState } from "react";
 import img_test2 from "../../Assets/test1.jpg";
 import img_test from "../../Assets/test2.jpg";
 import img_breakfast from "../../Assets/breakfast.webp";
 import img_dinner from "../../Assets/dinner.jpg";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { onSnapshot, query, where } from "firebase/firestore";
 import { recipeCollectionRef } from "../../utils/crud";
-import RecipeSelection from "./RecipeSelection";
-import { async } from "@firebase/util";
-import { db } from "../../utils/firebase";
-import { Link } from "@gatsbyjs/reach-router";
+import { useAuth } from "../../utils/useAuth";
 
-// import Recipe from "./Recipe";
+// import recep from "./recep";
+// recep list is the list of the dinner types on the homepage
 
 const RecipeList = () => {
+  const currentUser = useAuth();
+
   const [label, setLabel] = useState("breakfast");
-  const [recipes, setRecipes] = useState([]);
+  const [receps, setreceps] = useState([]);
 
   const handleClick = (e) => {
     setLabel(e.target.value);
@@ -22,9 +22,9 @@ const RecipeList = () => {
   };
 
   useEffect(() => {
-    const recipeRef = query(recipeCollectionRef, where("label", "==", label));
-    onSnapshot(recipeRef, (snapshot) => {
-      setRecipes(
+    const recepRef = query(recipeCollectionRef, where("label", "==", label));
+    onSnapshot(recepRef, (snapshot) => {
+      setreceps(
         snapshot.docs.map((doc) => ({
           id: doc.id,
           data: doc.data(),
@@ -32,10 +32,9 @@ const RecipeList = () => {
       );
     });
   }, [label]);
-  console.log(recipes);
 
   return (
-    <section className="allRecipes">
+    <section className="allreceps">
       <div className="top-recep__container">
         <div className="top-recep__list">
           <article className="recep-item">
@@ -88,29 +87,28 @@ const RecipeList = () => {
           </article>
         </div>
         <ul className="top-recep__list">
-          {recipes.map((recipe) => (
-            <div className="recep-item" key={recipe.data.id}>
-              {/* <Link path="/RecipeList/`${recipe.data.id}`"> */}
-              <h3 className="recep-item__title">{recipe.data.title}</h3>
-              {/* </Link> */}
+          {receps.map((recep) => (
+            <div className="recep-item" key={recep.data.id}>
+              <h3 className="recep-item__title">{recep.data.title}</h3>
               <img
                 className="recep-item__label-img"
-                src={recipe.data.imageUrl}
-                alt="image of the recipe"
+                src={recep.data.imageUrl}
+                alt="image of the recep"
               ></img>
-              <div className="label">
-                <span className="label__all">
-                  allergies:
-                  {recipe.data.allergies}
+              <div className="label-allergy">
+                allergies:
+                <span className="label-allergy__item">
+                  {recep.data.allergies}
                 </span>
               </div>
             </div>
           ))}
         </ul>
       </div>
+      { currentUser ?
       <a href="/RecipeList" className="top-recep__cta">
         See all our recipes
-      </a>
+      </a> : ""}
     </section>
   );
 };

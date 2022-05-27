@@ -1,6 +1,6 @@
 $max-width: 1800px;
 
-// recept gedeelte
+// recipe section
 
 .popup {
   position: fixed;
@@ -19,19 +19,20 @@ $max-width: 1800px;
 .select_box {
   border-radius: 3px;
   padding: 8px;
-  background-color: white;
-  color: green;
+  background-color: var(--color-basic-bg);
+  color: var(--color-light-green);
   margin-left: 5px;
 }
 
 label {
-  color: var(--color-text);
+  color: var(--color-green);
   position: relative;
 }
 
 .label__container {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   margin-bottom: 10px;
 }
 
@@ -41,29 +42,46 @@ label {
   &__input {
     margin-bottom: 20px;
     margin-left: 50px;
+    padding: 4px;
   }
 }
 
 .popup-inner {
   background-color: rgb(210, 248, 149);
-  color: green;
+  color: var(--color-light-green);
   padding: 1rem;
   border-radius: 0.5rem;
   width: 100%;
-  max-width: 480px;
+  max-width: 650px;
   overflow: auto;
   z-index: 20;
   max-height: calc(100vh - 4rem);
+
+  &__close {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .popup h2 {
   margin-bottom: 1rem;
-  color: green;
+  color: var(--color-light-green);
 }
 
 .form-group {
   margin-bottom: 1rem;
-  color: green;
+  color: var(--color-light-green);
+
+  &__input {
+    padding: 20px;
+    text-align: start;
+  }
+
+  &__input-img {
+    padding: 15px 0px 35px 10px;
+    text-align: start;
+  }
 }
 
 .form-group:last-of-type {
@@ -72,7 +90,7 @@ label {
 
 input,
 textarea {
-  color: green;
+  color: var(--color-light-green);
   display: block;
   width: 100%;
   padding: 0.5rem;
@@ -81,8 +99,13 @@ textarea {
   margin-bottom: 0.5rem;
 }
 
+textarea {
+  width: 95%;
+  height: auto;
+}
+
 .form-group label {
-  color: green;
+  color: var(--color-light-green);
   display: block;
   margin-bottom: 0.5rem;
 }
@@ -95,12 +118,16 @@ textarea {
 .two_buttons {
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
 }
 
 // recipe start
 
+a {
+  text-decoration: none;
+}
+
 .recipe {
-  margin-top: 100px;
   background: var(--color-bg-tint);
   display: flex;
   flex-direction: column;
@@ -109,14 +136,22 @@ textarea {
   font-weight: 400;
 
   &__title {
-    margin: 4em;
+    margin: 2em;
     margin-bottom: 0;
     font-size: 28px;
     color: white;
     text-shadow: 1px 1px var(--color-accent);
   }
 
+  &__button {
+    width: 150px;
+    margin: 20px 0px 20px 490px;
+    color: var(--color-accent);
+    background-color: var(--color-basic-bg);
+  }
+
   &__list {
+    margin-top: 150px;
     margin-right: -16px;
     line-height: 1.7em;
     font-size: 16px;
@@ -131,7 +166,7 @@ textarea {
   display: flex;
   align-items: center;
   margin-top: 0;
-  height: 400px;
+  height: 200px;
   line-height: 1.7em;
   font-size: 16px;
   font-weight: 400;
@@ -172,11 +207,11 @@ textarea {
   }
 
   &__btn {
-    margin: 5px;
-    box-shadow: rgb(6, 122, 70) 0px 0px 0px 1px;
+    margin: 10px 5px;
+    box-shadow: var(--color-light-green) 0px 0px 0px 1px;
     background-color: rgb(210, 248, 149);
-    color: rgb(6, 122, 70);
-    border: 1px solid rgb(6, 122, 70);
+    color: var(--color-light-green);
+    border: 1px solid var(--color-light-green);
   }
 
   &__btn-icon {
@@ -209,10 +244,10 @@ textarea {
 }
 
 .numbre_button {
-  box-shadow: rgb(6, 122, 70) 0px 0px 0px 1px;
+  box-shadow: var(--color-light-green) 0px 0px 0px 1px;
   background-color: rgb(210, 248, 149);
-  color: rgb(6, 122, 70);
-  border: 1px solid rgb(6, 122, 70);
+  color: var(--color-light-green);
+  border: 1px solid var(--color-light-green);
   padding-right: 24px;
   display: inline-flex;
   text-decoration: none;
@@ -268,7 +303,7 @@ textarea {
   width: 300px;
   height: 440px;
   overflow: hidden;
-  background-color: #eee;
+  background-color: var(--color-text);
   border-radius: 5px;
   top: -20px;
   float: left;
@@ -459,7 +494,7 @@ textarea {
 }
 
 .cont_tabs > ul > li:first-child > a:hover {
-  border-top: 7px solid rgb(6, 122, 70);
+  border-top: 7px solid var(--color-light-green);
   padding-top: 15px;
   color: #241c3e;
   margin-top: 0px;
@@ -475,10 +510,10 @@ textarea {
   padding-top: 5px;
   width: 30px;
   height: 30px;
-  background-color: rgb(6, 122, 70);
+  background-color: var(--color-light-green);
   border-radius: 50%;
   color: #fff;
-  box-shadow: 0px 0px 20px -2px rgb(6, 122, 70);
+  box-shadow: 0px 0px 20px -2px var(--color-light-green);
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s;
@@ -572,120 +607,6 @@ textarea {
 
 .cont_modal_active > .cont_photo > .cont_detalles {
   bottom: 0px;
-}
-
-//favorieten recepten
-.top-recep {
-  background-color: var(--color-bg-tint);
-  width: 100%;
-  margin-top: 17em;
-
-  &__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  &__title {
-    margin-bottom: 1em;
-    line-height: 2;
-    color: var(--color-accent);
-    text-decoration: overline wavy var(--color-accent);
-    text-align: center;
-  }
-
-  &__list {
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 2em;
-    margin-right: -15px;
-    margin-left: -15px;
-
-    ::after {
-      box-sizing: border-box;
-    }
-  }
-
-  &__cta {
-    text-decoration: none;
-    font-size: 16px;
-    border: 1px solid rgb(6, 122, 70);
-    color: black;
-    opacity: 50%;
-    padding: 1em;
-    border-radius: 0.5rem;
-    line-height: 1.4;
-    margin-bottom: 4em;
-
-    &::after {
-      content: "\2192";
-      padding-left: 1em;
-    }
-  }
-}
-
-.recep-item {
-  background-color: var(--color-basic-bg);
-  flex-basis: 225px;
-  max-width: 350px;
-  min-width: 175px;
-  flex-grow: 1;
-  flex-shrink: 1;
-  border: solid 1px #eee;
-  padding: 20px;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-
-  &__img {
-    object-fit: contain;
-    width: 250px;
-    height: 180px;
-    vertical-align: middle;
-    border-style: none;
-  }
-
-  &__icon {
-    width: 20%;
-    margin-bottom: 15px;
-    padding: 2px;
-  }
-
-  &__link {
-    background-color: white;
-    color: rgb(6, 122, 70);
-    font-size: 14px;
-    border: white;
-  }
-}
-
-.item-overlay {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--color-accent);
-  opacity: 0;
-}
-
-.item-detail {
-  display: block;
-  padding: 15px 0;
-  color: var(--color-accent);
-}
-
-.item-name item-price {
-  font-family: "Poppins", sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  transition: 0.5s ease;
-  margin-bottom: 0;
 }
 
 // weekmenu
@@ -786,24 +707,23 @@ textarea {
 .chefshad-rating {
   position: relative;
   display: flex;
-  z-index: 23000;
-  height: 20px;
-  width: 20px;
-  margin: 5px 5px 5px;
+  z-index: 200;
+  height: 15px;
+  width: 15px;
+  margin: 5px;
 }
 
 .btn {
   &__rating {
     margin-right: 5px;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     background-color: var(--color-bg-tint);
   }
 
   &__icon {
     height: 20px;
     width: 20px;
-    margin-left: 5px;
     margin-bottom: 20px;
   }
 }
