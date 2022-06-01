@@ -5,10 +5,10 @@ import "../src/components/Header/header.css";
 import "../src/components/Recipe/Styling/recipe.css";
 import "../src/components/Recipe/Styling/favorites.css";
 import "../src/components/Recipe/Styling/recipeDetail.css";
-// import "../src/components/Recipe/Styling/recipeList.css";
 import "../src/components/RecipeAside/Styling/RecipeAside.css";
 import "../src/components/ShoppingList/Shopping.css";
 import "../src/components/User/user.css";
+import "../src/components/Calendar/WeekMenu.css";
 
 import React from "react";
 
@@ -19,8 +19,9 @@ import Shop from "./components/ShoppingList/Shop";
 import Contact from "./components/Contact";
 import Recipe from "./components/Recipe/Recipe";
 import RecipeDetail from "./components/Recipe/RecipeDetail";
-import WeekMenu from "./components/Recipe/WeekMenu";
+import WeekMenu from "./components/Calendar/WeekMenu";
 import Home from "./components/Header/Home";
+import Restaurant from "./components/Restaurant/Restaurant";
 import CreateUser from "./components/User/CreateUser";
 import Login from "./components/User/Login";
 
@@ -43,6 +44,7 @@ function App() {
           <Favorites path="/favorites" />
           <WeekMenu path="/RecipeList/WeekMenu" />
           <Shop path="/shop" />
+          <Restaurant path="/Restaurant" />
           <CreateUser path="/CreateUser" />
           <Login path="/Login" />
           <Contact path="/contact" />

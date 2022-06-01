@@ -94,7 +94,8 @@ body {
   padding: 15px;
 }
 
-.contact_container {
+.contact__container {
+  background-color: var(--color-bg-tint);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -110,21 +111,21 @@ body {
   width: clamp(100px, 90%, 1000px);
   margin: 80px 50px;
   display: flex;
-  flex-wrap: wrap;
 }
 
 .contact-links,
 .contact-form-wrapper {
   width: 50%;
   padding: 8% 5% 10% 5%;
-  background-color: var(--color-bg-tint);
+  background-color: var(--color-accent);
+  opacity: 40%;
   border-radius: 0 10px 10px 0;
 }
 
 .contact-links {
   color: white;
   background-image: url("../Assets/hero.jpg");
-  opacity: 40%;
+  opacity: 60%;
   border-radius: 10px 0 0 10px;
 }
 
@@ -142,73 +143,20 @@ body {
 }
 
 .form-item {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
-
-label,
-input,
-textarea {
+.form-item__label {
+  color: var(--color-text);
+  justify-content: flex-start;
   font-family: "Poppins", sans-serif;
 }
-
-label {
-  position: absolute;
-  top: 10px;
-  left: 2%;
-  color: #999;
-  font-size: clamp(14px, 1.5vw, 18px);
-  pointer-events: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-input,
-textarea {
-  outline: 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  padding: 12px;
-  font-size: clamp(15px, 1.5vw, 18px);
-}
-
-input:focus + label,
-input:valid + label,
-textarea:focus + label,
-textarea:valid + label {
-  font-size: clamp(13px, 1.3vw, 16px);
-  color: #777;
-  top: -20px;
-  transition: all 0.225s ease;
-}
-
-.submit-btn {
-  background-color: var(--color-accent);
-  color: var(--color-accent-combo);
-  font-family: "Poppins", sans-serif;
-  font-size: clamp(16px, 1.6vw, 18px);
-  display: block;
-  padding: 12px 20px;
-  margin: 2px auto;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  transition: 0.2s;
-}
-
-.submit-btn:hover {
-  transform: scale(1.1, 1.1);
-}
-
-.submit-btn:active {
-  transform: scale(1.1, 1.1);
-  filter: sepia(0.5);
+.form-item__input {
+  padding: 15px;
+  border-radius: 5px;
+  color: var(--color-text);
+  align-items: flex-start;
 }
 
 button {

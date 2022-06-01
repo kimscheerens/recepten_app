@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import img_white from "../../Assets/wit.png";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { favoritesCollectionRef, deleteFavorite } from "../../utils/crud";
-import { onSnapshot } from "firebase/firestore";
+import { deleteFavorite, updateRating } from "../../utils/crud";
+import { onSnapshot, collection } from "firebase/firestore";
 import { db } from "../../utils/firebase";
 import RecipeRating from "./RecipeRating";
 import { useAuth } from "../../utils/useAuth";
-// import { query, orderBy, limit } from "firebase/firestore";
 
 // const favoriteLimit = query(Ref, orderBy("favorite", "desc"), limit(3));
 
@@ -15,6 +14,7 @@ const Favorites = () => {
   const [favorite, setFavorite] = useState([]);
 
   // to get all the data from firestore
+  const favoritesCollectionRef = collection(db, "favorites");
 
   useEffect(() => {
     onSnapshot(favoritesCollectionRef, (snapshot) => {
@@ -56,8 +56,15 @@ const Favorites = () => {
                 </div>
                 <div className="Favo-item-overlay"></div>
                 <div className="Favo-recipe__item">
-                  <h3 className="Favo-recipe__title">{favorit.title} </h3>
-                  {currentUser ? <RecipeRating /> : ""}
+                  <h3 className="Favo-recipe__title">{favorit.title}</h3>
+                  {currentUser ? (
+                    <RecipeRating
+                      favoritId={favorit.id}
+                      FavoRating={favorit.value}
+                    />
+                  ) : (
+                    ""
+                  )}
                 </div>
               </article>
             ))}

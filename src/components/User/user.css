@@ -1,7 +1,6 @@
 .user_container {
   background-image: linear-gradient(225deg, hsla(20deg, 20%, 42.8%, 0.8), hsla(20deg, 20%, 47.1%, 0.8)), url("../../Assets/hero.jpg");
   background-size: cover;
-  background-repeat: no-repeat;
   padding: 4em;
   margin-top: 8em;
 }

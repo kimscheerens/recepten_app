@@ -15,6 +15,7 @@ function Shop() {
     cart: false,
     quantity: "",
   });
+  const [count, setCount] = useState({quantity : "" });
 
   // to get all the data from firestore
   const shoppingCollectionRef = collection(db, "shoppingCart");
@@ -42,10 +43,10 @@ function Shop() {
     db.collection("shoppingCart").doc(`${item.id}`).set(item, { merge: true });
   }
 
-  // function increase(item) {
-  //   db.collection("shoppingCart").doc(`${item.id}`).update("quantity", quantity.increment(1))
+  function increase(item, quantity) {
+    db.collection("shoppingCart").doc(`${item.id}`).update( "quantity" , quantity.increment(1))
 
-  // }
+  }
   // function decrease(item) {
   //   db.collection("shoppingCart").doc(`${item.id}`).update("quantity", quantity.increment(-1))
   // }
@@ -59,10 +60,11 @@ function Shop() {
   }
 
   return (
-    <>
-      <div className="background">
-        <section className="shoppingList">
-          <h4>Your ShoppingList 🛒</h4>
+    <>    
+   <section className="shoppingList">
+      <h4>Your ShoppingList 🛒</h4> 
+        <div className="shoppingList__background">
+     </div>
           <table classNameName="shoppingList-container">
             <thead classNameName="shoppingList-header">
               <tr>
@@ -92,7 +94,7 @@ function Shop() {
                     </button>
                     {i.quantity}
                     <button
-                      // onClick={() => increase(i)}
+                      onClick={() => increase(i)}
                       classNameName="btn__sm"
                       size="sm"
                     >
@@ -110,7 +112,7 @@ function Shop() {
             </tbody>
             <button onClick={() => addtocart}>add to cart</button>
           </table>
-
+  
           <div classNameName="total">
             <div classNameName="total__item">
               <h4>TOTAL: {total()} €</h4>
@@ -123,8 +125,7 @@ function Shop() {
               </button>
             </span>
           </div>
-        </section>
-      </div>
+        </section>  
     </>
   );
 }

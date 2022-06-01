@@ -202,11 +202,13 @@ a {
 
   &__content {
     display: flex;
-    margin-top: 60px;
+    margin-top: 90px;
     margin-left: -350px;
   }
 
   &__btn {
+    width: 55px;
+    height: 55px;
     margin: 10px 5px;
     box-shadow: var(--color-light-green) 0px 0px 0px 1px;
     background-color: rgb(210, 248, 149);

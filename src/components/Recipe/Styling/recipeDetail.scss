@@ -1,22 +1,30 @@
 .recipeDetail {
-  margin-top: 2em;
-  background-color: var(--color-bg-tint);
+  background: var(--color-bg-tint);
+  display: flex;
+  flex-direction: column;
   line-height: 1.7em;
   font-size: 16px;
   font-weight: 400;
 
   &__container {
     display: flex;
-    justify-content: flex-start;
     flex-direction: column;
+    align-items: stretch;   
+    height: 700px;   
   }
 
   &__title {
     margin: 2em;
     margin-bottom: 0;
-    font-size: 28px;
+    font-size: 32px;
     color: white;
     text-shadow: 1px 1px var(--color-accent);
+  }
+
+  &__detail {
+    margin-top: -20px;
+    display: flex;
+    align-items: flex-start;
   }
 
   &__desc {
@@ -24,22 +32,23 @@
   }
 
   &__img {
-    margin: 150px;
     object-fit: cover;
-    width: 350px;
-    height: 200px;
-    transform: translateY(-50%);
-    position: absolute;
+    width: 550px;
+    height: 500px;
     border-radius: 15px;
+    margin-left: 100px;
   }
 
   &__content {
     display: flex;
-    margin-left: 140px;
-    margin-top: 160px;
+    justify-content: center;   
+    margin-top: -480px;
+    margin-left: 150px;
   }
 
   &__btn {
+    width: 55px;
+    height: 55px;
     margin-left: 10px;
     box-shadow: var(--color-light-green) 0px 0px 0px 1px;
     background-color: rgb(210, 248, 149);
@@ -51,4 +60,20 @@
     width: 20px;
     height: 20px;
   }
+}
+
+.Detail{
+  margin-left: 600px;
+  width: 480px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 20px -5px rgba(0, 0, 0, 0.5);
+  background-color: var(--color-bg-tint);
+}
+
+.count-btn{
+ margin: 3px;
+ padding-top: 4px;
+ background-color: var(--color-bg-tint);
+ box-shadow: 1px 1px 20px -5px rgba(0, 0, 0, 0.5);
+ color: var(--color-text);
 }

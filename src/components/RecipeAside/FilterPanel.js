@@ -51,7 +51,7 @@ const FilterPanel = ({
     <div className="input-group">
       <p className="label filter-section">Rating</p>
       <FilterListToggle
-        options={favoritesCollectionRef}
+        // options={favoritesCollectionRef}
         value={selectedRating}
         selectRating={selectRating}
       />

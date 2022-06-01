@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useState } from "react";
 
 const CountingPersons = () => {
-  return (
-    <div>CountingPersons</div>
-  )
-}
+  const [count, setCount] = useState(2);
 
-export default CountingPersons
+  return (
+    <>
+      <p>
+        Persons: <button onClick={() => setCount(count - 1)} className="count-btn"> - </button>
+        {count} 🍴 <button onClick={() => setCount(count + 1)} className="count-btn"> + </button>
+      </p>
+    </>
+  );
+};
+
+export default CountingPersons;

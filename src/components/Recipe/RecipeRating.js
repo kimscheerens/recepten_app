@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { writeFavoItem, updateRating } from "../../utils/crud";
-import { onSnapshot } from "firebase/firestore";
+import React, { useState } from "react";
+import { updateRating } from "../../utils/crud";
 import img_white from "../../Assets/wit.png";
 import img_black from "../../Assets/black.png";
-import { useParams } from "@gatsbyjs/reach-router";
 
 // whith chefshad
-const RecipeRating = () => {
-  const [rating, setRating] = useState(0);
-
-  const { recipeid } = useParams();
-
-  console.log(rating);
+const RecipeRating = ({ favoritId, FavoRating }) => {
+  const [rating, setRating] = useState(FavoRating || 0);
 
   return (
     <div className="chefshad-rating">
@@ -23,7 +17,7 @@ const RecipeRating = () => {
             type="button"
             key={i}
             className="btn__rating"
-            onClick={() => updateRating(i)}
+            onClick={() => updateRating(favoritId, { value: i })}
           >
             <img
               alt="chefshead white or black"
@@ -37,6 +31,5 @@ const RecipeRating = () => {
     </div>
   );
 };
-console.log(updateRating);
 
 export default RecipeRating;

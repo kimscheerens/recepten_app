@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useReducer, useState } from "react";
 import { reducer } from "../state/reducer";
-import { collection, onSnapshot } from "firebase/firestore";
-import { db } from "../utils/firebase";
+import { onSnapshot } from "firebase/firestore";
 import { recipeCollectionRef } from "../utils/crud";
 
 const RecipeContext = React.createContext([]);
@@ -9,14 +8,8 @@ const RecipeContext = React.createContext([]);
 export const RecipeProvider = (props) => {
   const [recipes, setRecipes] = useState([]);
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-
-  const recipesCollectionRef = collection(db, "recept");
-
   useEffect(() => {
-    onSnapshot(recipesCollectionRef, (snapshot) => {
+    onSnapshot(recipeCollectionRef, (snapshot) => {
       setRecipes(
         snapshot.docs.map((doc) => {
           return {

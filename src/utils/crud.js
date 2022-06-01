@@ -9,43 +9,19 @@ import {
   limit,
 } from "firebase/firestore";
 import { db } from "./firebase";
-import React, { useEffect, useState } from "react";
 
-
+/** START off recipeCollection CRUD */
 export const recipeCollectionRef = collection(db, "recept");
 // console.log(recipeCollectionRef);
 
-export const favoritesCollectionRef = query(
-  collection(db, "favorites"),
-  limit(4)
-);
-// console.log(favoritesCollectionRef);
-
-export const shoppingCollectionRef = collection(db, "shoppingCart");
-// console.log(shoppingCollectionRef);
-
-// C create item
-
+// C create item recipeCollection
 export const writeItem = async () => {
   const payload = {};
   const docRef = await addDoc(recipeCollectionRef, payload);
   console.log(docRef.id);
 };
 
-export const writeFavoItem = async (recipe) => {
-  const favoRef = collection(db, "favorites");
-  const payload = {
-    image: `${recipe.imageUrl}`,
-    recipeId: `${recipe.id}`,
-    title: `${recipe.title}`,
-    value: 0,
-  };
-  await addDoc(favoRef, payload);
-  console.log(favoRef);
-  console.log(payload);
-};
-
-// R read item
+// R read item recipeCollection
 export const readItem = async (id) => {
   const docSnap = await getDoc(recipeCollectionRef, id);
 
@@ -57,10 +33,7 @@ export const readItem = async (id) => {
   }
 };
 
-// get all favoItems
-// export const favoPosts = db.collection("favorites").where("recipeId", )
-
-// R readAllItems
+// R read ALL item recipeColletion
 export const readAllItem = async (id) => {
   const docRef = doc(db, "recept", id);
   const docSnap = await getDoc(docRef);
@@ -74,56 +47,117 @@ export const readAllItem = async (id) => {
 };
 // console.log(readAllItem);
 
-// U update Item
-export const updateItem = async (id, updatedRecipe) => {
-  const docRef = doc(
-    db,
-    "recept",
-    id
-    // title,
-    // imageUrl,
-    // desc,
-    // ingredients,
-    // steps,
-    // label,
-    // allergies,
-    // time
-  );
-  console.log(docRef);
-  await updateDoc(docRef, updatedRecipe);
+// U update item recipeCollection
+export const updateRecipe = async (id, updatedRecipe) => {
+  await recipeCollectionRef.doc(id).update(updatedRecipe);
+  const doc = await recipeCollectionRef.doc(id).get();
+
+  const NewRecipe = {
+    id: doc.id,
+    ...doc.data(),
+  };
+
+  console.log(NewRecipe);
+  return NewRecipe;
 };
 
-// addrating to DB
-
-export const updateRating = async ( i ) => {
-  const docRef = doc(db, "favorites", "value");  
-  await updateDoc(docRef, { value: `${i}` });
-};
-
-console.log(updateRating);
-console.log(updateDoc);
-
-//update shoppingCart
-// export const updateCart = async (id) => {
-//   const docRef = doc(db, "shoppingCart", id);
-//   console.log(docRef);
-//   await updateDoc(docRef, { quantity: `${increment or decrement}` });
-// };
-// console.log(updateCart);
-
-// D Delete Item's
+// D delete item recipeCollection
 export const deleteItem = async (id) => {
   const docRef = doc(db, "recept", id);
   await deleteDoc(docRef);
 };
 
+/** START of favorite CRUD */
+export const favoritesCollectionRefLimit = query(
+  collection(db, "favorites"),
+  limit(4)
+);
+// console.log(favoritesCollectionRef);
+
+// C create item from favorite collection
+export const writeFavoItem = async (recipe) => {
+  console.log(recipe);
+  const favoRef = collection(db, "favorites");
+  const payload = {
+    image: `${recipe.imageUrl}`,
+    recipeId: `${recipe.id}`,
+    title: `${recipe.title}`,
+    value: 0,
+  };
+  await addDoc(favoRef, payload);
+  console.log(favoRef);
+  console.log(payload);
+};
+
+// R read item from Favorite collection
+
+// U update item from Favorite collection
+
+// D Delete Favorite collection
 export const deleteFavorite = async (id) => {
   const docRef = doc(db, "favorites", id);
   await deleteDoc(docRef);
   console.log(deleteFavorite);
 };
 
+/** START of rating  */
+
+export const updateRating = async (id, value) => {
+  // console.group("updateRating");
+  // console.log(id, value);
+  // console.groupEnd();
+  const favoRef = doc(db, "favorites", id);
+  await updateDoc(favoRef, value);
+};
+
+console.log(updateDoc);
+
+/** START of WeekPlanner collection CRUD */
+// C create item from WeekPlanner collection
+export const writeCalendarItem = async (recipeDetail) => {
+  console.log(recipeDetail);
+  const calendarRef = collection(db, "WeekPlanner");
+  const payload = {
+    id: `${recipeDetail.id}`,
+    title: `${recipeDetail.title}`,
+    date: "",
+  };
+  await addDoc(calendarRef, payload);
+  console.log(calendarRef);
+  console.log(payload);
+  return () => {
+    const data = data();
+    console.log(data);
+  };
+};
+// R read item from WeekPlanner collection
+// U update item from WeekPlanner collection
+// D delete item from WeekPlanner collection
+
+/** START of CRUD ShoppingCart collection */
+export const shoppingCollectionRef = collection(db, "shoppingCart");
+// console.log(shoppingCollectionRef);
+
+// C create item from ShoppingCart collection
+// R read item from ShoppingCart collection
+// U update item from ShoppingCart collection
+
+// export const updateCart = async (id) => {
+//   const docRef = doc(db, "shoppingCart", id);
+//   console.log(docRef);
+//   await updateDoc(docRef, { quantity: `${increment || decrement}` });
+// };
+// console.log(updateCart);
+
+// D delete item from ShoppingCart collection
 export const deleteShopping = async (id) => {
   const docRef = doc(db, "shoppingCart", id);
   await deleteDoc(docRef);
 };
+
+
+
+
+
+
+

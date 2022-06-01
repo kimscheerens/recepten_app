@@ -1,13 +1,16 @@
-.background {
-  background-image: url("../../Assets/shop.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
 .shoppingList {
-  margin-left: 550px;
-  margin-top: 220px;
-  padding-top: 100px;
+  width: 100%;
+}
+.shoppingList__background {
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2em;
+  width: 800px;
+  background-image: url("../../Assets/shopping.jpg");
+  background-repeat: no-repeat;
 }
 
 .shoppingList-container {

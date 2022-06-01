@@ -1,16 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {
-  updateItem,
+  updateRecipe,
   deleteItem,
   recipeCollectionRef,
   writeFavoItem,
 } from "../../utils/crud";
-import { updateIngredientsByPersons } from "./VariablesRecipe";
 import img_white from "../../Assets/wit.png";
 import { onSnapshot, addDoc } from "firebase/firestore";
 import ImagesUpload from "../ImagesUpload";
-import RecipeAddToCalender from "./RecipeAddToCalender";
 
 // this is the CRUD for recipe
 
@@ -45,10 +43,8 @@ function Recipe() {
           };
         })
       );
-    }); 
-
+    });
   }, []);
-
 
   // to get more of the recipe
   const handleView = (id) => {
@@ -180,19 +176,7 @@ function Recipe() {
                   </button>
                   <button
                     className="recipe-item__btn"
-                    onClick={() =>
-                      updateItem(
-                        recipe.id,
-                        recipe.title,
-                        recipe.imageUrl,
-                        recipe.desc,
-                        recipe.ingredients,
-                        recipe.steps,
-                        recipe.label,
-                        recipe.allergies,
-                        recipe.time
-                      )
-                    }
+                    onClick={() => updateRecipe(recipe.id, {})}
                   >
                     ✏️
                   </button>
@@ -203,8 +187,7 @@ function Recipe() {
                       className="recipe-item__btn-icon"
                       onClick={() => writeFavoItem(recipe)}
                     />
-                  </button>
-                  <RecipeAddToCalender />
+                  </button>                 
                 </div>
                 {recipe.viewing ? (
                   ""
@@ -235,103 +218,17 @@ function Recipe() {
                       </span>
                     </aside>
                     <div className="cont_over_hidden">
-                      <div className="numbre_container">
-                        Persons:
-                        <button
-                          onClick={() =>
-                            updateIngredientsByPersons(
-                              recipe.id,
-                              recipe.ingredient
-                            )
-                          }
-                          className="numbre_button"
-                        >
-                          1
-                        </button>
-                        <button
-                          onClick={() =>
-                            updateIngredientsByPersons(
-                              recipe.id,
-                              recipe.ingredient
-                            )
-                          }
-                          className="numbre_button"
-                        >
-                          2
-                        </button>
-                        <button
-                          onClick={() =>
-                            updateIngredientsByPersons(
-                              recipe.id,
-                              recipe.ingredient
-                            )
-                          }
-                          className="numbre_button"
-                        >
-                          3
-                        </button>
-                        <button
-                          onClick={() =>
-                            updateIngredientsByPersons(
-                              recipe.id,
-                              recipe.ingredient
-                            )
-                          }
-                          className="numbre_button"
-                        >
-                          4
-                        </button>
-                        <button
-                          onClick={() =>
-                            updateIngredientsByPersons(
-                              recipe.id,
-                              recipe.ingredient
-                            )
-                          }
-                          className="numbre_button"
-                        >
-                          5
-                        </button>
-                        <button
-                          onClick={() =>
-                            updateIngredientsByPersons(
-                              recipe.id,
-                              recipe.ingredient
-                            )
-                          }
-                          className="numbre_button"
-                        >
-                          6
-                        </button>
-                      </div>
                       <div className="cont_tabs">
                         <ul>
                           <li>
-                            <a href="#ingredients">
-                              <h4 id="ingredients">INGREDIENTS</h4>
-                              <div className="cont_text_ingredients">
-                                {recipe.ingredients.map((ingredient, i) => (
-                                  <li key={i}>{ingredient}</li>
-                                ))}
-                              </div>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#preparation">
-                              <h4 id="preparation">PREPARATION</h4>
-                            </a>
+                            <h4>INGREDIENTS</h4>
+                            <div className="cont_text_ingredients">
+                              {recipe.ingredients.map((ingredient, i) => (
+                                <li key={i}>{ingredient}</li>
+                              ))}
+                            </div>
                           </li>
                         </ul>
-                      </div>
-                      <div className="cont_text_det_preparation">
-                        <h4 className="cont_title_preparation">Steps</h4>
-                      </div>
-                      <div className="cont_info_preparation">
-                        <ol className="cont_text_det_preparation">
-                          {recipe.steps.map((step, i) => (
-                            <li key={i}>{step}</li>
-                          ))}
-                        </ol>
                       </div>
                     </div>
                   </div>
@@ -345,7 +242,6 @@ function Recipe() {
         <div className="popup">
           <div className="popup-inner">
             <div className="popup-inner__close">
-              {" "}
               <h2>Add a new recipe</h2>
               <button
                 type="button"

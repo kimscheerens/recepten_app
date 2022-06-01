@@ -75,6 +75,15 @@ const Header = () => {
             ) : (
               ""
             )}
+            {/* {currentUser ? (
+              <li>
+                <a href="/restaurant" className="main-nav__item">
+                  🍜 resto
+                </a>
+              </li>
+            ) : (
+              ""
+            )} */}
           </ul>
 
           <ThemeSelector />

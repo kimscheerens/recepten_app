@@ -1,3 +1,12 @@
+@mixin title {
+  margin: 4em;
+  margin-bottom: 0;
+  font-size: 28px;
+  color: white;
+  text-shadow: 1px 1px var(--color-accent);
+}
+
+
 //user layout
 .user_container {
   background-image: linear-gradient(
